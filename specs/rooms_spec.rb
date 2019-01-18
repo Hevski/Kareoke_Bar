@@ -17,8 +17,8 @@ class TestRooms < Minitest::Test
     song5 = Songs.new("Hate")
     song6 = Songs.new("Crate")
     @rap_songs = [song4, song5, song6]
-    @room1 = Rooms.new("Country", 3, @country_songs)
-    @room2 = Rooms.new("Rap", 2, @rap_songs)
+    @room1 = Rooms.new("Country", 3, @country_songs, 5)
+    @room2 = Rooms.new("Rap", 2, @rap_songs, 5)
     @guest1 = Guests.new("Bob", 25, "Mama Mia")
     @guest2 = Guests.new("Billy", 15, "Mate")
     @guest3 = Guests.new("Hilary", 20, "Bye")
@@ -52,6 +52,21 @@ class TestRooms < Minitest::Test
     @room1.add_songs(new_song)
     assert_equal(@country_songs, @room1.songs)
   end
+
+  def test_if_capacity_full_add_guest_to_queue
+    @room1.add_to_queue(@guest1)
+    assert_equal(3, @room1.capacity)
+  end
+
+  def test_room_has_fee
+    assert_equal(5, @room1.fee)
+  end
+
+  def test_guest_can_afford_fee__pays_fee
+    @room1.pay_fee(@guest1, @room1)
+    assert_equal(5, @room1.fee)
+  end
+
 
 
 end
