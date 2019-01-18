@@ -1,5 +1,6 @@
 require('minitest/autorun')
 require('minitest/rg')
+require("pry")
 require_relative('../Rooms')
 require_relative('../Songs')
 require_relative('../Guests')
@@ -36,15 +37,21 @@ class TestRooms < Minitest::Test
     assert_equal(@country_songs, @room1.songs)
   end
 
-  def test_check_in_guest
+  def test_check_in_guest_to_room
     @room1.check_in(@guest1)
     assert_equal(3, @room1.capacity)
   end
 
-  # def test_room_can_check_in_guest
-  #   @room1.check_in(@guest1)
-  #   assert_equal(1, @room1.capacity)
-  # end
+  def test_check_out_guests_from_room
+    @room2.check_out(@guest1)
+    assert_equal(2, @room2.capacity)
+  end
+
+  def test_songs_can_be_added_to_room
+    new_song = Songs.new("Buzz")
+    @room1.add_songs(new_song)
+    assert_equal(@country_songs, @room1.songs)
+  end
 
 
 end
