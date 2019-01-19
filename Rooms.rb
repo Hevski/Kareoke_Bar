@@ -59,6 +59,11 @@ end
     #binding.pry
   end
 
+  def can_afford_tab(guest)
+    guest.wallet >= @bar_tab
+  end
+
+
 
 
 

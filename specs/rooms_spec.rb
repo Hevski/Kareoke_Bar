@@ -109,7 +109,12 @@ class TestRooms < Minitest::Test
     assert_equal(3, @room1.bar_tab)
   end
 
-  #def test_guest_can_pay_bar_tab
+  def test_bar_tab_is_less_than_guest_wallet__return_true
+    assert_equal(true, @room1.can_afford_tab(@guest1))
+  end
+
+  #def test_customer_pays_bar_tab
+
 
 
 
