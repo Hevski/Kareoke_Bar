@@ -1,6 +1,6 @@
 class Rooms
 
-  attr_accessor :genre, :capacity, :songs, :guests, :queue, :fee
+  attr_accessor :genre, :capacity, :songs, :guests, :queue, :fee, :bar_tab
 
   def initialize(genre, capacity, songs, fee)
     @genre = genre
@@ -9,6 +9,7 @@ class Rooms
     @guests = []
     @queue = []
     @fee = fee
+    @bar_tab = 0
   end
 
   def check_in(guest)
@@ -49,9 +50,13 @@ class Rooms
   end
 end
 
-  def bar_tab_value
-    
+  def add_to_bar_tab(room)
+    @bar_tab += room.fee
   end
+
+
+
+
 
 
 

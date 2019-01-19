@@ -4,6 +4,7 @@ require("pry")
 require_relative('../Rooms')
 require_relative('../Songs')
 require_relative('../Guests')
+require_relative('../Bar')
 
 
 class TestRooms < Minitest::Test
@@ -23,7 +24,8 @@ class TestRooms < Minitest::Test
     @guest2 = Guests.new("Billy", 15, "Mate")
     @guest3 = Guests.new("Hilary", 20, "Bye")
     @guest4 = Guests.new("Bert", 12, "It's Christmas!")
-    #@guest1_tab = Bar.new()
+    @room1_bar = Bar.new("Country Bar", 40, @drinks, @food)
+    @room2_bar = Bar.new("Rap Bar", 40, @drinks, @food)
   end
 
   def test_room_has_genre
@@ -83,9 +85,18 @@ class TestRooms < Minitest::Test
     assert_equal("Mama Mia", @guest1.fave_song)
   end
 
-  # def test_guest_bar_tab_value
-  #   .bar_tab_value()
-  #   assert_equal(0, .bar_tab)
+  def test_room_bar_tab_value
+    assert_equal(0, @room1.bar_tab)
+  end
+
+  def test_add_fee_to_bar_tab
+    @room1.add_to_bar_tab(@room1)
+    assert_equal(5, @room1.bar_tab)
+  end
+
+  # def test_add_guest_bar_purchases_to_room_bar_tab
+  #   @room1.bar_purchase_to_tab(@room1_bar)
+  #   assert_equal(5, @room1.bar_tab)
   # end
 
 
