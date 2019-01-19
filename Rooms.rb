@@ -14,12 +14,16 @@ class Rooms
   def check_in(guest)
     if @capacity >= @guests.size
       @guests << guest
+      #binding.pry
     end
-
   end
 
   def check_out(guest)
     @guests.delete(guest)
+  end
+
+  def count_guests_in_room
+    @guests.length
   end
 
   def add_songs(song)
@@ -32,12 +36,21 @@ class Rooms
     end
   end
 
-  def afford_fee(guest, room)
-    #binding.pry
+  def pay_fee(guest, room)
     if guest.wallet >= room.fee
       guest.wallet -= room.fee
     end
   end
+
+  def favorite_song(room, guest)
+    #binding.pry
+    if room.songs.include?(guest.fave_song)
+      return "Boom, shake, shake, shake the rooooommm"
+  end
+end
+
+
+
 
 
 

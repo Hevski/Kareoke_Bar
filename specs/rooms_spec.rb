@@ -37,14 +37,23 @@ class TestRooms < Minitest::Test
     assert_equal(@country_songs, @room1.songs)
   end
 
+  def test_count_guest_array
+    assert_equal([], @room1.guests)
+  end
+
   def test_check_in_guest_to_room
     @room1.check_in(@guest1)
-    assert_equal(3, @room1.capacity)
+    assert_equal(1, @room1.count_guests_in_room)
   end
 
   def test_check_out_guests_from_room
-    @room2.check_out(@guest1)
-    assert_equal(2, @room2.capacity)
+    @room2.check_out(@guest2)
+    assert_equal(0, @room2.count_guests_in_room)
+  end
+
+  def test_room_has_guests
+    @room1.check_in(@guest1)
+    assert_equal(1, @room1.count_guests_in_room)
   end
 
   def test_songs_can_be_added_to_room
@@ -55,7 +64,7 @@ class TestRooms < Minitest::Test
 
   def test_if_capacity_full_add_guest_to_queue
     @room1.add_to_queue(@guest1)
-    assert_equal(3, @room1.capacity)
+    assert_equal(0, @room1.count_guests_in_room)
   end
 
   def test_room_has_fee
@@ -65,6 +74,12 @@ class TestRooms < Minitest::Test
   def test_guest_can_afford_fee__pays_fee
     @room1.pay_fee(@guest1, @room1)
     assert_equal(5, @room1.fee)
+    assert_equal(20, @guest1.wallet)
+  end
+
+  def test_favorite_song_is_on_rooms_playlist
+    @room2.favorite_song(@room2, @guest1)
+    assert_equal("Mama Mia", @guest1.fave_song)
   end
 
 
