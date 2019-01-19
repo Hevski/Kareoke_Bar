@@ -63,6 +63,16 @@ end
     guest.wallet >= @bar_tab
   end
 
+  # def pays_bar_tab(guest, room)
+  #   guest.wallet -= @bar_tab
+  #   @bar_tab += @room1_bar.till
+  # end
+
+  # while customer wallet < bar_tab
+  # customer can buy drinks, pay fee, hear fave song 
+
+  # pretty sure i havent used the Bar class instancies
+
 
 
 

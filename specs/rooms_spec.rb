@@ -113,7 +113,14 @@ class TestRooms < Minitest::Test
     assert_equal(true, @room1.can_afford_tab(@guest1))
   end
 
-  #def test_customer_pays_bar_tab
+  # def test_customer_pays_bar_tab
+  #   @room1.bar_purchase_to_room_tab(@room1_bar, @beer)
+  #   @room1.bar_purchase_to_room_tab(@room1_bar, @wine)
+  #   @room1.pays_bar_tab(@guest1, @room1_bar)
+  #   assert_equal(0, @room_1.bar_tab)
+  #   assert_equal(18, @guest1.wallet)
+  #   assert_equal(7, @room1_bar.till)
+  # end
 
 
 
