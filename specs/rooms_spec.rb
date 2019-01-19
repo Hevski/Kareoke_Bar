@@ -23,6 +23,7 @@ class TestRooms < Minitest::Test
     @guest2 = Guests.new("Billy", 15, "Mate")
     @guest3 = Guests.new("Hilary", 20, "Bye")
     @guest4 = Guests.new("Bert", 12, "It's Christmas!")
+    #@guest1_tab = Bar.new()
   end
 
   def test_room_has_genre
@@ -82,6 +83,10 @@ class TestRooms < Minitest::Test
     assert_equal("Mama Mia", @guest1.fave_song)
   end
 
+  # def test_guest_bar_tab_value
+  #   .bar_tab_value()
+  #   assert_equal(0, .bar_tab)
+  # end
 
 
 end

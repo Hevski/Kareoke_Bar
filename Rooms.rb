@@ -49,7 +49,9 @@ class Rooms
   end
 end
 
-
+  def bar_tab_value
+    
+  end
 
 
 
