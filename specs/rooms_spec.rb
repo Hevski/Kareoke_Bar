@@ -84,10 +84,11 @@ class TestRooms < Minitest::Test
     assert_equal(5, @room1.fee)
   end
 
-  def test_guest_can_afford_fee__pays_fee
+  def test_guest_can_afford_fee__adds_fee_to_bar_tab
     @room1.pay_fee(@guest1, @room1)
     assert_equal(5, @room1.fee)
-    assert_equal(20, @guest1.wallet)
+    assert_equal(5, @room1.bar_tab)
+    #assert_equal(20, @guest1.wallet)
   end
 
   def test_favorite_song_is_on_rooms_playlist
@@ -99,10 +100,11 @@ class TestRooms < Minitest::Test
     assert_equal(0, @room1.bar_tab)
   end
 
-  def test_add_fee_to_bar_tab
-    @room1.add_to_bar_tab(@room1)
-    assert_equal(5, @room1.bar_tab)
-  end
+#added this into test_guest_can_afford_fee__adds_fee_to_bar_tab
+  # def test_add_fee_to_bar_tab
+  #   @room1.add_to_bar_tab(@room1)
+  #   assert_equal(5, @room1.bar_tab)
+  # end
 
   def test_add_guest_bar_purchases_to_room_bar_tab
     @room1.bar_purchase_to_room_tab(@room1, @beer)

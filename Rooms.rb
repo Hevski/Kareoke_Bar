@@ -38,10 +38,10 @@ class Rooms
   end
 
   def pay_fee(guest, room)
-    if guest.wallet >= room.fee
-      guest.wallet -= room.fee
+    guest.wallet >= room.fee
+    @bar_tab += room.fee
+      #guest.wallet -= room.fee
     end
-  end
 
   def favorite_song(room, guest)
     #binding.pry
@@ -50,11 +50,11 @@ class Rooms
   end
 end
 
-  def add_to_bar_tab(room)
-    @bar_tab += room.fee
-  end
+  # def add_to_bar_tab(room)
+  #   @bar_tab += room.fee
+  # end
 
-  def bar_purchase_to_room_tab(room, purchase)
+  def bar_purchase_to_room_bar_tab(room, purchase)
     room.bar_tab += purchase.price
     #binding.pry
   end
@@ -69,7 +69,7 @@ end
   # end
 
   # while customer wallet < bar_tab
-  # customer can buy drinks, pay fee, hear fave song 
+  # customer can buy drinks, pay fee, hear fave song
 
   # pretty sure i havent used the Bar class instancies
 
