@@ -16,6 +16,4 @@ class TestBar < Minitest::Test
     burger = Food.new("Aberdeen Angus", 6)
     @food = [pizza, chips, burger]
   end
-
-
 end

@@ -19,5 +19,4 @@ class TestGuests < Minitest::Test
   def test_guest_fave_song
     assert_equal("Mama Mia", @guest.fave_song)
   end
-
 end

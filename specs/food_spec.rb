@@ -10,7 +10,4 @@ class TestFood < MiniTest::Test
     @chips = Food.new("chips n cheese", 3)
     @burger = Food.new("Aberdeen Angus", 6)
   end
-
-
-
 end

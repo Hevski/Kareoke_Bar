@@ -8,7 +8,6 @@ require_relative('../Bar')
 require_relative('../Food')
 require_relative('../Drink')
 
-
 class TestRooms < Minitest::Test
 
   def setup
@@ -56,17 +55,17 @@ class TestRooms < Minitest::Test
 
   def test_check_in_guest_to_room
     @room1.check_in(@guest1)
-    assert_equal(1, @room1.count_guests_in_room)
+    assert_equal(1, @room1.guests.length)
   end
 
   def test_check_out_guests_from_room
     @room2.check_out(@guest2)
-    assert_equal(0, @room2.count_guests_in_room)
+    assert_equal(0, @room2.guests.length)
   end
 
   def test_room_has_guests
     @room1.check_in(@guest1)
-    assert_equal(1, @room1.count_guests_in_room)
+    assert_equal(1, @room1.guests.length)
   end
 
   def test_songs_can_be_added_to_room
@@ -77,7 +76,7 @@ class TestRooms < Minitest::Test
 
   def test_if_capacity_full_add_guest_to_queue
     @room1.add_to_queue(@guest1)
-    assert_equal(0, @room1.count_guests_in_room)
+    assert_equal(0, @room1.guests.length)
   end
 
   def test_room_has_fee
@@ -101,22 +100,11 @@ class TestRooms < Minitest::Test
     assert_equal(5, @room1.bar_tab)
   end
 
-#added this into "test_guest_can_afford_fee__adds_fee_to_bar_tab"
-  # def test_add_fee_to_bar_tab
-  #   @room1.add_to_bar_tab(@room1)
-  #   assert_equal(5, @room1.bar_tab)
-  # end
-
   def test_add_guest_bar_purchases_to_room_bar_tab
     @room1.add_fee_to_bar_tab(@guest1, @room1)
     @room1.bar_purchase_to_room_tab(@room1, @beer)
     assert_equal(8, @room1.bar_tab)
   end
-
-  # decided against this as how will bar know how much guest has?
-  # def test_bar_tab_is_less_than_guest_wallet__return_true
-  #   assert_equal(true, @room1.can_afford_tab(@guest1))
-  # end
 
   def test_bar_tab_gets_paid_add_to_till__guest_has_enough_money
     @room1.add_fee_to_bar_tab(@guest2, @room1)
@@ -144,15 +132,7 @@ class TestRooms < Minitest::Test
     assert_equal(65, @room1_bar.till)
   end
 
-  # could add dishes from food and drink purchased to dirt_dishes array
-  # when guest does forfeit, dishes are reduced from array
-
   def test_customer_sings_while_washing_dishes
     assert_equal("#{@guest1.name} is washing dishes whilst singing #{@guest1.fave_song}", @room1.forfeit(@guest1))
   end
-
-  # test customer cant afford bar tab - pay what they can
-  # - then must sing to clear
-
-
 end

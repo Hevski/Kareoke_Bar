@@ -1,5 +1,4 @@
 class Bar
-
   attr_accessor :name, :till, :drinks, :food
 
   def initialize(name, till, drinks, food)
@@ -8,5 +7,4 @@ class Bar
     @food = food
     @drinks = drinks
   end
-
 end

@@ -1,5 +1,4 @@
 class Guests
-
   attr_accessor :name, :wallet, :fave_song
 
   def initialize(name, wallet, fave_song)
@@ -7,7 +6,4 @@ class Guests
     @wallet = wallet
     @fave_song = fave_song
   end
-
-
-
 end
