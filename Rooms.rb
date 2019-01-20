@@ -37,7 +37,7 @@ class Rooms
 
   def favorite_song(room, guest)
     return if !room.songs.include?(guest.fave_song)
-      return "Boom, shake, shake, shake the rooooommm"
+      "Boom, shake, shake, shake the rooooommm"
     end
 
   def bar_purchase_to_room_tab(room, purchase)
@@ -61,6 +61,6 @@ class Rooms
   # when guest does forfeit, dishes are reduced from array
 
   def forfeit(guest)
-    return "#{guest.name} is washing dishes whilst singing #{guest.fave_song}"
+    "#{guest.name} is washing dishes whilst singing #{guest.fave_song}"
   end
 end
