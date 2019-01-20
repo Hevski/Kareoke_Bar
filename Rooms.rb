@@ -40,44 +40,51 @@ class Rooms
   def add_fee_to_bar_tab(guest, room)
     guest.wallet >= room.fee
     @bar_tab += room.fee
-      #guest.wallet -= room.fee
-    end
+    #guest.wallet -= room.fee
+  end
 
   def favorite_song(room, guest)
     #binding.pry
     if room.songs.include?(guest.fave_song)
       return "Boom, shake, shake, shake the rooooommm"
+    end
   end
-end
-
-  # def add_to_bar_tab(room)
-  #   @bar_tab += room.fee
-  # end
 
   def bar_purchase_to_room_tab(room, purchase)
     room.bar_tab += purchase.price
     #binding.pry
   end
 
+
   # def can_afford_tab(guest)
   #   guest.wallet >= @bar_tab
   # end
 
   def bar_tab_paid(guest, room_bar)
-    guest.wallet -= @bar_tab
-    room_bar.till += @bar_tab
-    @bar_tab = 0
+    if @bar_tab > guest.wallet
+      room_bar.till += guest.wallet
+      guest.wallet = 0
+      @bar_tab = 0
+      forfeit(guest)
+    elsif @bar_tab < guest.wallet
+      guest.wallet -= @bar_tab
+      room_bar.till += @bar_tab
+      @bar_tab = 0
+    end
   end
 
-  # def pays_bar_tab(guest, room)
+  def forfeit(guest)
+    return "#{guest.name} is washing dishes whilst singing #{guest.fave_song}"
+  end
+
+  # def bar_tab_paid(guest, room_bar)
   #   guest.wallet -= @bar_tab
-  #   @bar_tab += @room1_bar.till
+  #   room_bar.till += @bar_tab
+  #   @bar_tab = 0
   # end
 
-  # while customer wallet < bar_tab
-  # customer can buy drinks, pay fee, hear fave song
 
-  # pretty sure i havent used the Bar class instancies
+
 
 
 

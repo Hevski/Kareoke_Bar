@@ -23,7 +23,7 @@ class TestRooms < Minitest::Test
     @room1 = Rooms.new("Country", 3, @country_songs, 5, 0)
     @room2 = Rooms.new("Rap", 2, @rap_songs, 5, 0)
     @guest1 = Guests.new("Bob", 25, "Mama Mia")
-    @guest2 = Guests.new("Billy", 15, "Mate")
+    @guest2 = Guests.new("Billy", 50, "Mate")
     @guest3 = Guests.new("Hilary", 20, "Bye")
     @guest4 = Guests.new("Bert", 12, "It's Christmas!")
     @beer = Drink.new("Punk IPA", 3)
@@ -117,16 +117,36 @@ class TestRooms < Minitest::Test
   #   assert_equal(true, @room1.can_afford_tab(@guest1))
   # end
 
-  def test_bar_tab_gets_paid_add_to_till__customer_has_enough_money
-    @room1.add_fee_to_bar_tab(@guest1, @room1)
+  def test_bar_tab_gets_paid_add_to_till__guest_has_enough_money
+    @room1.add_fee_to_bar_tab(@guest2, @room1)
     @room1.bar_purchase_to_room_tab(@room1, @beer)
-    @room1.bar_tab_paid(@guest1, @room1_bar)
+    @room1.bar_purchase_to_room_tab(@room1, @wine)
+    @room1.bar_purchase_to_room_tab(@room1, @cocktail)
+    @room1.bar_purchase_to_room_tab(@room1, @pizza)
+    @room1.bar_purchase_to_room_tab(@room1, @burger)
+    @room1.bar_tab_paid(@guest2, @room1_bar)
     assert_equal(0, @room1.bar_tab)
-    assert_equal(17, @guest1.wallet)
-    assert_equal(48, @room1_bar.till)
+    assert_equal(22, @guest2.wallet)
+    assert_equal(68, @room1_bar.till)
   end
 
-  # test customer can pay bar tab - pays tab
+  def test_bar_tab_gets_paid_add_to_till__not_enough_money
+    @room1.add_fee_to_bar_tab(@guest1, @room1)
+    @room1.bar_purchase_to_room_tab(@room1, @beer)
+    @room1.bar_purchase_to_room_tab(@room1, @wine)
+    @room1.bar_purchase_to_room_tab(@room1, @cocktail)
+    @room1.bar_purchase_to_room_tab(@room1, @pizza)
+    @room1.bar_purchase_to_room_tab(@room1, @burger)
+    @room1.bar_tab_paid(@guest1, @room1_bar)
+    assert_equal(0, @room1.bar_tab)
+    assert_equal(0, @guest1.wallet)
+    assert_equal(65, @room1_bar.till)
+    #assert_equal("Wash dishes", )
+  end
+
+  def test_customer_sings_while_washing_dishes
+    assert_equal("#{@guest1.name} is washing dishes whilst singing #{@guest1.fave_song}", @room1.forfeit(@guest1))
+  end
 
   # test customer cant afford bar tab - pay what they can
   # - then must sing to clear
