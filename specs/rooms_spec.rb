@@ -84,8 +84,8 @@ class TestRooms < Minitest::Test
     assert_equal(5, @room1.fee)
   end
 
-  def test_guest_can_afford_fee__adds_fee_to_bar_tab
-    @room1.pay_fee(@guest1, @room1)
+  def test_add_fee_to_bar_tab
+    @room1.add_fee_to_bar_tab(@guest1, @room1)
     assert_equal(5, @room1.fee)
     assert_equal(5, @room1.bar_tab)
     #assert_equal(20, @guest1.wallet)
@@ -97,7 +97,8 @@ class TestRooms < Minitest::Test
   end
 
   def test_room_bar_tab_value
-    assert_equal(0, @room1.bar_tab)
+    @room1.add_fee_to_bar_tab(@guest1, @room1)
+    assert_equal(5, @room1.bar_tab)
   end
 
 #added this into test_guest_can_afford_fee__adds_fee_to_bar_tab
@@ -107,13 +108,22 @@ class TestRooms < Minitest::Test
   # end
 
   def test_add_guest_bar_purchases_to_room_bar_tab
+    @room1.add_fee_to_bar_tab(@guest1, @room1)
     @room1.bar_purchase_to_room_tab(@room1, @beer)
-    assert_equal(3, @room1.bar_tab)
+    assert_equal(8, @room1.bar_tab)
   end
 
-  def test_bar_tab_is_less_than_guest_wallet__return_true
-    assert_equal(true, @room1.can_afford_tab(@guest1))
-  end
+  # def test_bar_tab_is_less_than_guest_wallet__return_true
+  #   assert_equal(true, @room1.can_afford_tab(@guest1))
+  # end
+
+  
+
+  # test customer can pay bar tab - pays tab
+
+  # test customer cant afford bar tab - pay what they can
+  # - then must sing to clear
+
 
   # def test_customer_pays_bar_tab
   #   @room1.bar_purchase_to_room_tab(@room1_bar, @beer)

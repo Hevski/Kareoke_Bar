@@ -37,7 +37,7 @@ class Rooms
     end
   end
 
-  def pay_fee(guest, room)
+  def add_fee_to_bar_tab(guest, room)
     guest.wallet >= room.fee
     @bar_tab += room.fee
       #guest.wallet -= room.fee
@@ -54,14 +54,14 @@ end
   #   @bar_tab += room.fee
   # end
 
-  def bar_purchase_to_room_bar_tab(room, purchase)
+  def bar_purchase_to_room_tab(room, purchase)
     room.bar_tab += purchase.price
     #binding.pry
   end
 
-  def can_afford_tab(guest)
-    guest.wallet >= @bar_tab
-  end
+  # def can_afford_tab(guest)
+  #   guest.wallet >= @bar_tab
+  # end
 
   # def pays_bar_tab(guest, room)
   #   guest.wallet -= @bar_tab
