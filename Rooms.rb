@@ -15,7 +15,6 @@ class Rooms
   def check_in(guest)
     if @capacity >= @guests.size
       @guests << guest
-      #binding.pry
     end
   end
 
@@ -40,11 +39,9 @@ class Rooms
   def add_fee_to_bar_tab(guest, room)
     guest.wallet >= room.fee
     @bar_tab += room.fee
-    #guest.wallet -= room.fee
   end
 
   def favorite_song(room, guest)
-    #binding.pry
     if room.songs.include?(guest.fave_song)
       return "Boom, shake, shake, shake the rooooommm"
     end
@@ -52,9 +49,7 @@ class Rooms
 
   def bar_purchase_to_room_tab(room, purchase)
     room.bar_tab += purchase.price
-    #binding.pry
   end
-
 
   # def can_afford_tab(guest)
   #   guest.wallet >= @bar_tab
@@ -66,7 +61,7 @@ class Rooms
       guest.wallet = 0
       @bar_tab = 0
       forfeit(guest)
-    elsif @bar_tab < guest.wallet
+    elsif #@bar_tab < guest.wallet
       guest.wallet -= @bar_tab
       room_bar.till += @bar_tab
       @bar_tab = 0
