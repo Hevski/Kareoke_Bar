@@ -144,6 +144,9 @@ class TestRooms < Minitest::Test
     assert_equal(65, @room1_bar.till)
   end
 
+  # could add dishes from food and drink purchased to dirt_dishes array
+  # when guest does forfeit, dishes are reduced from array
+
   def test_customer_sings_while_washing_dishes
     assert_equal("#{@guest1.name} is washing dishes whilst singing #{@guest1.fave_song}", @room1.forfeit(@guest1))
   end

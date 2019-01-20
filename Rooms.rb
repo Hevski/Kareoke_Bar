@@ -68,6 +68,9 @@ class Rooms
     end
   end
 
+  # could add dishes from food and drink purchased to dirt_dishes array
+  # when guest does forfeit, dishes are reduced from array
+
   def forfeit(guest)
     return "#{guest.name} is washing dishes whilst singing #{guest.fave_song}"
   end
