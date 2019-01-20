@@ -63,6 +63,12 @@ end
   #   guest.wallet >= @bar_tab
   # end
 
+  def bar_tab_paid(guest, room_bar)
+    guest.wallet -= @bar_tab
+    room_bar.till += @bar_tab
+    @bar_tab = 0
+  end
+
   # def pays_bar_tab(guest, room)
   #   guest.wallet -= @bar_tab
   #   @bar_tab += @room1_bar.till
