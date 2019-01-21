@@ -2,7 +2,7 @@ require('minitest/autorun')
 require('minitest/rg')
 require_relative('../Guest')
 
-class TestGuests < Minitest::Test
+class TestGuest < Minitest::Test
 
   def setup
     @guest = Guest.new("Bob", 25, "Mama Mia")

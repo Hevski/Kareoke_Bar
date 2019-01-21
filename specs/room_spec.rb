@@ -1,26 +1,26 @@
 require('minitest/autorun')
 require('minitest/rg')
 require("pry")
-require_relative('../Rooms')
-require_relative('../Songs')
+require_relative('../Room')
+require_relative('../Song')
 require_relative('../Guest')
 require_relative('../Bar')
 require_relative('../Food')
 require_relative('../Drink')
 
-class TestRooms < Minitest::Test
+class TestRoom < Minitest::Test
 
   def setup
-    song1 = Songs.new("Boom")
-    song2 = Songs.new("Cry")
-    song3 = Songs.new("Bye")
+    song1 = Song.new("Boom")
+    song2 = Song.new("Cry")
+    song3 = Song.new("Bye")
     @country_songs = [song1, song2, song3]
-    song4 = Songs.new("Mate")
-    song5 = Songs.new("Hate")
-    song6 = Songs.new("Crate")
+    song4 = Song.new("Mate")
+    song5 = Song.new("Hate")
+    song6 = Song.new("Crate")
     @rap_songs = [song4, song5, song6]
-    @room1 = Rooms.new("Country", 3, @country_songs, 5, 0)
-    @room2 = Rooms.new("Rap", 2, @rap_songs, 5, 0)
+    @room1 = Room.new("Country", 3, @country_songs, 5, 0)
+    @room2 = Room.new("Rap", 2, @rap_songs, 5, 0)
     @guest1 = Guest.new("Bob", 25, "Mama Mia")
     @guest2 = Guest.new("Billy", 50, "Mate")
     @guest3 = Guest.new("Hilary", 20, "Bye")
@@ -69,7 +69,7 @@ class TestRooms < Minitest::Test
   end
 
   def test_songs_can_be_added_to_room
-    new_song = Songs.new("Buzz")
+    new_song = Song.new("Buzz")
     @room1.add_songs(new_song)
     assert_equal(@country_songs, @room1.songs)
   end
@@ -83,9 +83,16 @@ class TestRooms < Minitest::Test
     @room1.check_in(@guest1)
     @room1.check_in(@guest2)
     @room1.check_in(@guest3)
-    #@room1.check_in(@guest4)
     @room1.add_to_queue(@guest4)
     assert_equal(3, @room1.guests.length)
+  end
+##
+  def test_if_capacity_full_add_guest_to_queue
+    @room2.check_in(@guest1)
+    @room2.check_in(@guest2)
+    @room2.check_in(@guest3)
+    @room2.add_to_queue(@guest4)
+    assert_equal(3, @room2.guests.length)
   end
 
   def test_room_has_fee

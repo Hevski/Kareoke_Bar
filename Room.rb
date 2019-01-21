@@ -1,4 +1,4 @@
-class Rooms
+class Room
   attr_accessor :genre, :capacity, :songs, :guests, :queue, :fee, :bar_tab
 
   def initialize(genre, capacity, songs, fee, bar_tab)

@@ -1,11 +1,11 @@
 require('minitest/autorun')
 require('minitest/rg')
-require_relative('../Songs')
+require_relative('../Song')
 
-class TestSongs < Minitest::Test
+class TestSong < Minitest::Test
 
   def setup
-    @song = Songs.new("song title")
+    @song = Song.new("song title")
   end
 
   def test_song_has_title
