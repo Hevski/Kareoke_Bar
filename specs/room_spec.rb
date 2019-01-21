@@ -111,6 +111,11 @@ class TestRoom < Minitest::Test
     assert_equal("Mama Mia", @guest1.fave_song)
   end
 
+  def test_favorite_song_is_on_rooms_playlist
+    @room1.favorite_song(@room1, @guest1)
+    assert_equal("Mama Mia", @guest1.fave_song)
+  end
+
   def test_room_bar_tab_value
     @room1.add_fee_to_bar_tab(@guest1, @room1)
     assert_equal(5, @room1.bar_tab)
