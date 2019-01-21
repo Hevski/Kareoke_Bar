@@ -30,6 +30,12 @@ class Rooms
       @queue << guest
     end
 
+  # def add_to_queue(guest)
+  #   if @capacity == @guests.length
+  #     @queue << guest
+  #   end
+  # end
+
   def add_fee_to_bar_tab(guest, room)
     guest.wallet >= room.fee
     @bar_tab += room.fee

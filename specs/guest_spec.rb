@@ -1,11 +1,11 @@
 require('minitest/autorun')
 require('minitest/rg')
-require_relative('../Guests')
+require_relative('../Guest')
 
 class TestGuests < Minitest::Test
 
   def setup
-    @guest = Guests.new("Bob", 25, "Mama Mia")
+    @guest = Guest.new("Bob", 25, "Mama Mia")
   end
 
   def test_guest_has_name

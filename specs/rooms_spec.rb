@@ -3,7 +3,7 @@ require('minitest/rg')
 require("pry")
 require_relative('../Rooms')
 require_relative('../Songs')
-require_relative('../Guests')
+require_relative('../Guest')
 require_relative('../Bar')
 require_relative('../Food')
 require_relative('../Drink')
@@ -21,10 +21,10 @@ class TestRooms < Minitest::Test
     @rap_songs = [song4, song5, song6]
     @room1 = Rooms.new("Country", 3, @country_songs, 5, 0)
     @room2 = Rooms.new("Rap", 2, @rap_songs, 5, 0)
-    @guest1 = Guests.new("Bob", 25, "Mama Mia")
-    @guest2 = Guests.new("Billy", 50, "Mate")
-    @guest3 = Guests.new("Hilary", 20, "Bye")
-    @guest4 = Guests.new("Bert", 12, "It's Christmas!")
+    @guest1 = Guest.new("Bob", 25, "Mama Mia")
+    @guest2 = Guest.new("Billy", 50, "Mate")
+    @guest3 = Guest.new("Hilary", 20, "Bye")
+    @guest4 = Guest.new("Bert", 12, "It's Christmas!")
     @beer = Drink.new("Punk IPA", 3)
     @wine = Drink.new("Malbec", 4)
     @cocktail = Drink.new("Margarita", 5)
@@ -77,6 +77,15 @@ class TestRooms < Minitest::Test
   def test_if_capacity_full_add_guest_to_queue
     @room1.add_to_queue(@guest1)
     assert_equal(0, @room1.guests.length)
+  end
+##
+  def test_if_capacity_full_add_guest_to_queue
+    @room1.check_in(@guest1)
+    @room1.check_in(@guest2)
+    @room1.check_in(@guest3)
+    #@room1.check_in(@guest4)
+    @room1.add_to_queue(@guest4)
+    assert_equal(3, @room1.guests.length)
   end
 
   def test_room_has_fee
