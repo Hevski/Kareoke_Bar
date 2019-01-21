@@ -15,15 +15,15 @@ class TestRoom < Minitest::Test
     song2 = Song.new("Cry")
     song3 = Song.new("Bye")
     @country_songs = [song1, song2, song3]
-    song4 = Song.new("Mate")
+    @song4 = Song.new("Mate")
     song5 = Song.new("Hate")
     song6 = Song.new("Crate")
-    @rap_songs = [song4, song5, song6]
+    @rap_songs = [@song4, song5, song6]
     @room1 = Room.new("Country", 3, @country_songs, 5, 0)
     @room2 = Room.new("Rap", 2, @rap_songs, 5, 0)
     @guest1 = Guest.new("Bob", 25, "Mama Mia")
-    @guest2 = Guest.new("Billy", 50, "Mate")
-    @guest3 = Guest.new("Hilary", 20, "Bye")
+    @guest2 = Guest.new("Billy", 50, @song4)
+    @guest3 = Guest.new("Hilary", 20, @song3)
     @guest4 = Guest.new("Bert", 12, "It's Christmas!")
     @beer = Drink.new("Punk IPA", 3)
     @wine = Drink.new("Malbec", 4)
@@ -106,14 +106,14 @@ class TestRoom < Minitest::Test
     #assert_equal(20, @guest1.wallet)
   end
 
-  def test_favorite_song_is_on_rooms_playlist
-    @room2.favorite_song(@room2, @guest1)
-    assert_equal("Mama Mia", @guest1.fave_song)
+  def test_favorite_song_is_on_rooms_playlist__nil
+    @guest1.fave_song
+    assert_nil(@room1.favorite_song(@guest1))
   end
 
   def test_favorite_song_is_on_rooms_playlist
-    @room1.favorite_song(@room1, @guest1)
-    assert_equal("Mama Mia", @guest1.fave_song)
+    @guest2.fave_song
+    assert_equal("Boom, shake, shake, shake the rooooommm", @room2.favorite_song(@guest2))
   end
 
   def test_room_bar_tab_value

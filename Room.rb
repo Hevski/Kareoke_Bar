@@ -41,10 +41,16 @@ class Room
     @bar_tab += room.fee
   end
 
-  def favorite_song(room, guest)
-    return if !room.songs.include?(guest.fave_song)
-      "Boom, shake, shake, shake the rooooommm"
-    end
+  def favorite_song(guest)
+    return "Boom, shake, shake, shake the rooooommm" if @songs.include?(guest.fave_song)
+  end
+
+  # def favorite_song(guest)
+  #   #binding.pry
+  #   if @songs.include?(guest.fave_song)
+  #     return "Boom, shake, shake, shake the rooooommm"
+  #   end
+  # end
 
   def bar_purchase_to_room_tab(room, purchase)
     room.bar_tab += purchase.price
