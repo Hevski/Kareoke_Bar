@@ -107,12 +107,12 @@ class TestRoom < Minitest::Test
   end
 
   def test_favorite_song_is_on_rooms_playlist__nil
-    @guest1.fave_song
+    #@guest1.fave_song
     assert_nil(@room1.favorite_song(@guest1))
   end
 
   def test_favorite_song_is_on_rooms_playlist
-    @guest2.fave_song
+    #@guest2.fave_song
     assert_equal("Boom, shake, shake, shake the rooooommm", @room2.favorite_song(@guest2))
   end
 
